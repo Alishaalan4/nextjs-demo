@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import NavClient from './NavClient';
 
 export default function Navigation() {
   return (
@@ -10,7 +11,7 @@ export default function Navigation() {
               📚 BookHub
             </Link>
           </div>
-          <div className="flex space-x-8">
+          <div className="flex space-x-8 items-center">
             <Link 
               href="/" 
               className="hover:text-zinc-300 transition-colors font-medium"
@@ -29,6 +30,13 @@ export default function Navigation() {
             >
               Authors
             </Link>
+            <Link 
+              href="/publishers" 
+              className="hover:text-zinc-300 transition-colors font-medium"
+            >
+              Publishers
+            </Link>
+            <NavClient />
           </div>
         </div>
       </div>

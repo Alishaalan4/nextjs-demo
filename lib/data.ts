@@ -20,6 +20,16 @@ export interface Book {
   coverUrl: string;
   pages: number;
   isbn: string;
+  publisherId: number;
+}
+
+export interface Publisher {
+  id: number;
+  name: string;
+  country: string;
+  foundedYear: number;
+  website?: string;
+  description: string;
 }
 
 export const authors: Author[] = [
@@ -83,6 +93,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
     pages: 432,
     isbn: "978-0141439518",
+    publisherId: 1,
   },
   {
     id: 2,
@@ -96,6 +107,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop",
     pages: 474,
     isbn: "978-0141439587",
+    publisherId: 1,
   },
   {
     id: 3,
@@ -109,6 +121,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=600&fit=crop",
     pages: 328,
     isbn: "978-0452284234",
+    publisherId: 2,
   },
   {
     id: 4,
@@ -122,6 +135,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=400&h=600&fit=crop",
     pages: 112,
     isbn: "978-0452284244",
+    publisherId: 2,
   },
   {
     id: 5,
@@ -135,6 +149,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=600&fit=crop",
     pages: 256,
     isbn: "978-0062693662",
+    publisherId: 3,
   },
   {
     id: 6,
@@ -148,6 +163,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=400&h=600&fit=crop",
     pages: 272,
     isbn: "978-0062073488",
+    publisherId: 3,
   },
   {
     id: 7,
@@ -161,6 +177,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=400&h=600&fit=crop",
     pages: 127,
     isbn: "978-0684801223",
+    publisherId: 4,
   },
   {
     id: 8,
@@ -174,6 +191,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop",
     pages: 332,
     isbn: "978-0684801469",
+    publisherId: 4,
   },
   {
     id: 9,
@@ -187,6 +205,7 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop",
     pages: 194,
     isbn: "978-0156628709",
+    publisherId: 1,
   },
   {
     id: 10,
@@ -200,6 +219,46 @@ export const books: Book[] = [
       "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=600&fit=crop",
     pages: 209,
     isbn: "978-0156907392",
+    publisherId: 1,
+  },
+];
+
+export const publishers: Publisher[] = [
+  {
+    id: 1,
+    name: "Penguin Classics",
+    country: "United Kingdom",
+    foundedYear: 1946,
+    website: "https://www.penguin.co.uk",
+    description:
+      "Penguin Classics is a series of classic books published by Penguin Books, featuring affordable, accessible editions of literary classics with authoritative texts.",
+  },
+  {
+    id: 2,
+    name: "Secker & Warburg",
+    country: "United Kingdom",
+    foundedYear: 1935,
+    website: "https://www.vintage-books.co.uk",
+    description:
+      "Secker & Warburg is a British publisher known for publishing significant literary works and political writings, established as an independent publishing house.",
+  },
+  {
+    id: 3,
+    name: "HarperCollins",
+    country: "United States",
+    foundedYear: 1989,
+    website: "https://www.harpercollins.com",
+    description:
+      "HarperCollins Publishers is one of the Big Five book publishers in the US, publishing a wide range of genres including mystery, romance, and literary fiction.",
+  },
+  {
+    id: 4,
+    name: "Scribner",
+    country: "United States",
+    foundedYear: 1846,
+    website: "https://www.scribner.com",
+    description:
+      "Scribner is an American publisher known for publishing significant literary works and first editions of acclaimed authors throughout history.",
   },
 ];
 
@@ -216,10 +275,22 @@ export function getBooksByAuthorId(authorId: number): Book[] {
   return books.filter((book) => book.authorId === authorId);
 }
 
+export function getPublisherById(id: number): Publisher | undefined {
+  return publishers.find((publisher) => publisher.id === id);
+}
+
+export function getBooksByPublisherId(publisherId: number): Book[] {
+  return books.filter((book) => book.publisherId === publisherId);
+}
+
 export function getAllAuthors(): Author[] {
   return authors;
 }
 
 export function getAllBooks(): Book[] {
   return books;
+}
+
+export function getAllPublishers(): Publisher[] {
+  return publishers;
 }
